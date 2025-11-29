@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 750px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.card input,
+.card textarea,
+.card select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    display: inline-block;
+    background: #007BFF;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+.product-list {
+    list-style: none;
+}
+
+.product-item {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+}
+
+.delete-btn {
+    background: red;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #b30000;
+}

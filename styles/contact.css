@@ -1,0 +1,113 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body */
+body {
+    background: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: #005fff;
+    color: white;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+header p {
+    margin-top: 10px;
+}
+
+/* Contact Info */
+.contact-info h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: #e60023;
+    /* red icons */
+}
+
+.contact-info a {
+    color: #005fff;
+    /* blue links */
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.contact-info a:hover {
+    color: #e60023;
+    /* red on hover */
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: #0a1a33;
+    color: white;
+}
+.site-footer {
+    padding: 1rem;
+    text-align: center;
+    background: #0f172a;
+    /* dark background */
+}
+
+.follow-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.5rem;
+    transition: transform 120ms ease, background 120ms ease;
+}
+
+.follow-link:focus,
+.follow-link:hover {
+    transform: translateY(-2px);
+    outline: none;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.tiktok-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    display: inline-block;
+    fill: #fff;
+    /* icon color matches text */
+    flex-shrink: 0;
+}
+
+/* optional small responsive tweak */
+@media (max-width: 420px) {
+    .follow-text {
+        display: none;
+    }
+
+    /* show only icon on small screens */
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Product Manager</title>
+    <link rel="stylesheet" href="styles/admin.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <!-- Add Product Form -->
+        <form id="addProductForm" class="card">
+            <h2>Add New Product</h2>
+
+            <label>
+                Product Name:
+                <input type="text" id="productName" required>
+            </label>
+
+            <label>
+                Category:
+                <select id="productCategory" required>
+                    <option value="phones">Phones</option>
+                    <option value="computers">Computers</option>
+                    <option value="shoes">Shoes</option>
+                </select>
+            </label>
+
+            <label>
+                Image URL:
+                <input type="text" id="productImage" required>
+            </label>
+
+            <label>
+                Old Price:
+                <input type="number" id="productOldPrice" required>
+            </label>
+
+            <label>
+                New Price:
+                <input type="number" id="productPrice" required>
+            </label>
+
+            <label>
+                Description:
+                <textarea id="productDesc" rows="3"></textarea>
+            </label>
+
+            <button type="submit" class="btn">Add Product</button>
+        </form>
+
+        <h2>Existing Products</h2>
+        <ul id="productList" class="product-list"></ul>
+
+    </div>
+
+    <script src="scripts/admin.js"></script>
+</body>
+
+</html>
