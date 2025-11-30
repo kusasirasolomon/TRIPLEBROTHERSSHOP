@@ -1,69 +1,68 @@
-// localStorage key
-const LS_PRODUCTS = 'bk_products_v1';
+// ---------------------- FIREBASE CONFIG ----------------------
+import { db } from "./firebase-config.js";
+import { collection, addDoc, getDocs, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
 // DOM Elements
 const addProductForm = document.getElementById('addProductForm');
 const productListEl = document.getElementById('productList');
 
-// Load products
-function loadProducts() {
-    const raw = localStorage.getItem(LS_PRODUCTS);
-    if (raw) {
-        try {
-            return JSON.parse(raw);
-        } catch (e) {
-            console.warn("Bad JSON in localStorage", e);
-        }
-    }
-    return [];
-}
+// Reference to Firestore collection
+const productsCol = collection(db, "products");
 
-let products = loadProducts();
-
-// Render products on screen
-function renderProducts() {
+// ---------------------- RENDER PRODUCTS ----------------------
+async function renderProducts() {
     productListEl.innerHTML = "";
-
-    products.forEach(p => {
-        const li = document.createElement("li");
-        li.className = "product-item";
-        li.innerHTML = `
-            <span><strong>${p.name}</strong> — ${p.category}</span>
-            <button class="delete-btn" data-id="${p.id}">Delete</button>
-        `;
-        productListEl.appendChild(li);
-    });
+    try {
+        const snapshot = await getDocs(productsCol);
+        snapshot.forEach(p => {
+            const data = p.data();
+            const li = document.createElement("li");
+            li.className = "product-item";
+            li.innerHTML = `
+                <span><strong>${data.name}</strong> — ${data.category}</span>
+                <button class="delete-btn" data-id="${p.id}">Delete</button>
+            `;
+            productListEl.appendChild(li);
+        });
+    } catch (error) {
+        console.error("Error loading products:", error);
+    }
 }
 
-// Add product
-addProductForm.addEventListener("submit", (e) => {
+// ---------------------- ADD PRODUCT ----------------------
+addProductForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const newProduct = {
-        id: "p" + Date.now(),
         name: document.getElementById("productName").value,
         category: document.getElementById("productCategory").value,
         image: document.getElementById("productImage").value,
         oldPrice: parseFloat(document.getElementById("productOldPrice").value),
         price: parseFloat(document.getElementById("productPrice").value),
-        desc: document.getElementById("productDesc").value,
+        desc: document.getElementById("productDesc").value
     };
 
-    products.push(newProduct);
-    localStorage.setItem(LS_PRODUCTS, JSON.stringify(products));
-    renderProducts();
-    addProductForm.reset();
-});
-
-// Delete product
-productListEl.addEventListener("click", (e) => {
-    if (e.target.classList.contains("delete-btn")) {
-        const id = e.target.dataset.id;
-        products = products.filter(p => p.id !== id);
-        localStorage.setItem(LS_PRODUCTS, JSON.stringify(products));
-        renderProducts();
+    try {
+        await addDoc(productsCol, newProduct);
+        addProductForm.reset();
+        renderProducts(); // refresh list
+    } catch (error) {
+        console.error("Error adding product:", error);
     }
 });
 
-// Initial load
+// ---------------------- DELETE PRODUCT ----------------------
+productListEl.addEventListener("click", async (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+        const docId = e.target.dataset.id;
+        try {
+            await deleteDoc(doc(db, "products", docId));
+            renderProducts(); // refresh list
+        } catch (error) {
+            console.error("Error deleting product:", error);
+        }
+    }
+});
+
+// ---------------------- INITIAL LOAD ----------------------
 renderProducts();
