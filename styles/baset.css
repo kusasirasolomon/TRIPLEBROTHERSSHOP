@@ -394,3 +394,40 @@ body.modal-open {
         font-size: 0.85rem;
     }
 }
+
+/* MOBILE CART FIX */
+@media (max-width: 480px) {
+    .cart-drawer {
+        width: 85vw;
+        /* responsive width */
+        max-width: 280px;
+        /* much smaller than 300px */
+        padding: 0.6rem;
+    }
+
+    .cart-row {
+        font-size: 0.85rem;
+    }
+
+    .cart-row button {
+        padding: 0.2rem 0.45rem;
+        font-size: 0.75rem;
+    }
+
+    #cartTotal {
+        font-size: 0.9rem;
+    }
+
+    #placeOrderBtn {
+        padding: 0.45rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-drawer {
+        height: 90vh;
+        top: 5vh;
+        border-radius: 12px 0 0 12px;
+    }
+}
