@@ -143,6 +143,9 @@ function removeFromCart(index) {
     updateCartUI();
 }
 
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+
 // ---------------------- CART DRAWER TOGGLE ----------------------
 cartBtn.addEventListener("click", () => {
     cartDrawer.classList.toggle("hidden");
@@ -154,10 +157,11 @@ closeCartBtn.addEventListener("click", () => {
 
 // ---------------------- PLACE ORDER ----------------------
 placeOrderBtn.addEventListener("click", () => {
-    // Show checkout form
-    checkoutFormSection.style.display = "block";
+    checkoutFormSection.style.display = "flex";
+    document.body.classList.add("modal-open");
     cartDrawer.classList.add("hidden");
 });
+
 
 // ---------------------- WEB3FORMS SUBMISSION ----------------------
 const WEB3FORMS_ACCESS_KEY = "7a3c70ea-9e0c-4cf6-98f6-87e73f50a803";
@@ -205,6 +209,8 @@ orderForm.addEventListener("submit", async (e) => {
             updateCartUI();
             orderForm.reset();
             checkoutFormSection.style.display = "none";
+            document.body.classList.remove("modal-open");
+
         } else {
             alert("Failed to send order: " + (result.message || "Please try again."));
         }

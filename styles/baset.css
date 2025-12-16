@@ -331,3 +331,36 @@ header button,
     /* show only icon on small screens */
 }
 
+/* Checkout modal overlay */
+#checkoutForm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(204, 213, 215, 0.6);
+    z-index: 9999;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* Actual form box */
+#checkoutForm form {
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Prevent background scroll */
+body.modal-open {
+    overflow: hidden;
+}
